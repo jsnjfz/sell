@@ -29,6 +29,7 @@ public class ProductCategoryRepositoryTest {
     public void AddTest(){
         ProductCategory test = repo.findOne(1);
         test.setCategoryName("test22333");
+
 //        test.setCategoryType(66);
         repo.save(test);
 //        System.out.println(test);
