@@ -52,7 +52,7 @@ public class ProductServiceImpl implements ProductService {
         for (CartDTO cartDTO : cartDTOList) {
             ProductInfo productInfo = productInfoRepository.findOne(cartDTO.getProductId());
             if (productInfo == null) {
-                throw new SellException(ResultEnum.PRODUCT_NOT_EXSIT);
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
             }
             Integer num = productInfo.getProductStock() - cartDTO.getProductQuantity();
             if (num < 0) {
@@ -62,6 +62,21 @@ public class ProductServiceImpl implements ProductService {
             productInfo.setProductStock(num);
             productInfoRepository.save(productInfo);
         }
+    }
+
+    @Override
+    @Transactional
+    public void increaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO : cartDTOList) {
+            ProductInfo productInfo = productInfoRepository.findOne(cartDTO.getProductId());
+            if (productInfo == null) {
+                throw new SellException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            Integer resultNum = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(resultNum);
+            productInfoRepository.save(productInfo);
+        }
+
     }
 
 }

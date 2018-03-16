@@ -21,10 +21,10 @@ public interface OrderService {
      */
     OrderDTO findOne(String orderId);
 
-//    /**
-//     * 根据openid查询订单列表.
-//     */
-//    Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
+    /**
+     * 根据openid查询订单列表.
+     */
+    Page<OrderDTO> findList(String buyerOpenid, Pageable pageable);
 //
 //    Page<OrderDTO> findListAll(Pageable pageable);
 
